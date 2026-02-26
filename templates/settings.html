@@ -1,0 +1,263 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<!-- Settings Layout Container -->
+<div class="h-full flex gap-12 max-w-6xl mx-auto w-full">
+
+    <!-- Inner Sidebar (Settings Navigation) -->
+    <div class="w-56 flex flex-col gap-4 pt-10">
+        <!-- Title -->
+        <h2 class="text-2xl font-bold text-base-content mb-4 px-2">Settings</h2>
+
+        <!-- Profile Option (Active State) -->
+        <a href="#" id="tab-profile" onclick="switchTab('profile')"
+            class="settings-tab flex items-center gap-4 group p-2 rounded-full bg-base-200 transition-colors">
+            <div
+                class="icon-container w-12 h-12 rounded-full bg-primary text-primary-content shadow-sm flex items-center justify-center transition-transform group-hover:scale-105">
+                <i data-lucide="user" class="w-6 h-6"></i>
+            </div>
+            <span class="tab-text text-lg text-base-content font-bold">Profile</span>
+        </a>
+
+        <!-- Orders Option -->
+        <a href="#" id="tab-orders" onclick="switchTab('orders')"
+            class="settings-tab flex items-center gap-4 group p-2 rounded-full hover:bg-base-200/50 transition-colors">
+            <div
+                class="icon-container w-12 h-12 rounded-full bg-base-100 border border-base-300 text-base-content shadow-sm flex items-center justify-center transition-transform group-hover:scale-105">
+                <i data-lucide="shopping-bag" class="w-5 h-5"></i>
+            </div>
+            <span
+                class="tab-text text-lg text-base-content/80 font-medium group-hover:text-base-content transition-colors">Orders</span>
+        </a>
+
+        <!-- Address Option -->
+        <a href="#" id="tab-address" onclick="switchTab('address')"
+            class="settings-tab flex items-center gap-4 group p-2 rounded-full hover:bg-base-200/50 transition-colors">
+            <div
+                class="icon-container w-12 h-12 rounded-full bg-base-100 border border-base-300 text-base-content shadow-sm flex items-center justify-center transition-transform group-hover:scale-105">
+                <i data-lucide="map-pin" class="w-5 h-5"></i>
+            </div>
+            <span
+                class="tab-text text-lg text-base-content/80 font-medium group-hover:text-base-content transition-colors">Address</span>
+        </a>
+    </div>
+
+    <!-- Inner Main Content (Profile Settings Form) -->
+    <div class="flex-1 flex flex-col h-full pt-10 px-4 overflow-y-auto w-full relative">
+
+        <!-- PROFILE PANEL -->
+        <div id="panel-profile"
+            class="settings-panel max-w-3xl w-full bg-base-100 rounded-[2rem] border border-base-300 shadow-xl p-10 mx-auto mb-8">
+            <h3 class="text-2xl font-bold text-base-content mb-8">Profile Details</h3>
+
+            <form class="space-y-8">
+                <!-- Avatar Upload Section -->
+                <div class="flex items-center gap-8 pb-8 border-b border-base-200">
+                    <div
+                        class="w-24 h-24 rounded-full bg-neutral text-neutral-content flex items-center justify-center text-3xl font-bold shadow-md">
+                        AV
+                    </div>
+                    <div class="flex flex-col gap-3">
+                        <h4 class="font-semibold text-base-content">Profile Picture</h4>
+                        <div class="flex gap-3">
+                            <button type="button" class="btn btn-primary rounded-full px-6">Upload new</button>
+                            <button type="button" class="btn btn-ghost rounded-full text-error">Remove</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Form Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- First Name -->
+                    <div class="form-control w-full">
+                        <label class="label"><span class="label-text font-medium text-base-content/70">First
+                                Name</span></label>
+                        <input type="text" value="Ayush" class="input input-bordered w-full rounded-2xl" />
+                    </div>
+
+                    <!-- Last Name -->
+                    <div class="form-control w-full">
+                        <label class="label"><span class="label-text font-medium text-base-content/70">Last
+                                Name</span></label>
+                        <input type="text" value="Verma" class="input input-bordered w-full rounded-2xl" />
+                    </div>
+
+                    <!-- Email -->
+                    <div class="form-control w-full">
+                        <label class="label"><span class="label-text font-medium text-base-content/70">Email
+                                Address</span></label>
+                        <input type="email" value="ayush@example.com" class="input input-bordered w-full rounded-2xl" />
+                    </div>
+
+                    <!-- Phone Number -->
+                    <div class="form-control w-full">
+                        <label class="label"><span class="label-text font-medium text-base-content/70">Phone
+                                Number</span></label>
+                        <input type="tel" placeholder="+1 (555) 000-0000"
+                            class="input input-bordered w-full rounded-2xl" />
+                    </div>
+                </div>
+
+                <!-- Bio -->
+                <div class="form-control w-full">
+                    <label class="label"><span class="label-text font-medium text-base-content/70">Bio
+                            summary</span></label>
+                    <textarea class="textarea textarea-bordered h-24 rounded-2xl"
+                        placeholder="A little about yourself..."></textarea>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="flex justify-end gap-4 pt-6 border-t border-base-200">
+                    <button type="button" class="btn btn-ghost rounded-full px-8">Cancel</button>
+                    <button type="submit" class="btn btn-primary rounded-full px-8 shadow-lg shadow-primary/30">Save
+                        Changes</button>
+                </div>
+            </form>
+        </div>
+
+        <!-- ORDERS PANEL -->
+        <div id="panel-orders"
+            class="settings-panel hidden max-w-3xl w-full bg-base-100 rounded-[2rem] border border-base-300 shadow-xl p-10 mx-auto">
+            <h3 class="text-2xl font-bold text-base-content mb-8">My Orders</h3>
+
+            <div class="space-y-6">
+                <!-- Single Order Item -->
+                <div class="flex flex-col border border-base-200 rounded-2xl p-6 gap-4">
+                    <div class="flex justify-between items-center border-b border-base-200 pb-4">
+                        <div>
+                            <p class="text-sm font-medium text-base-content/60">Order #FA-1090</p>
+                            <p class="text-xs text-base-content/50">Placed on Oct 24, 2026</p>
+                        </div>
+                        <div class="badge badge-success">Delivered</div>
+                    </div>
+
+                    <div class="flex items-center gap-4">
+                        <div class="w-16 h-16 bg-base-200 rounded-xl flex items-center justify-center">
+                            <i data-lucide="package" class="w-8 h-8 text-base-content/50"></i>
+                        </div>
+                        <div class="flex-1">
+                            <h4 class="font-bold text-base-content">Vintage Denim Jacket</h4>
+                            <p class="text-sm text-base-content/70">Upcycled Collection</p>
+                        </div>
+                        <div class="font-bold text-lg text-base-content">
+                            ₹3,500
+                        </div>
+                    </div>
+
+                    <div class="flex justify-end gap-3 pt-2">
+                        <button class="btn btn-sm btn-outline rounded-full text-base-content/70">Track Order</button>
+                        <button class="btn btn-sm btn-ghost rounded-full text-base-content/70">View Invoice</button>
+                    </div>
+                </div>
+
+                <!-- Empty State -->
+                <div class="text-center py-10">
+                    <i data-lucide="shopping-cart" class="w-16 h-16 text-base-content/20 mx-auto mb-4"></i>
+                    <p class="text-base-content/60 font-medium">You don't have any more orders.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ADDRESS PANEL -->
+        <div id="panel-address"
+            class="settings-panel hidden max-w-3xl w-full bg-base-100 rounded-[2rem] border border-base-300 shadow-xl p-10 mx-auto">
+            <div class="flex justify-between items-center mb-8">
+                <h3 class="text-2xl font-bold text-base-content">My Addresses</h3>
+                <button class="btn btn-primary btn-sm rounded-full">Add New Address</button>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Default Address Card -->
+                <div class="border-2 border-primary rounded-2xl p-6 relative">
+                    <span
+                        class="absolute -top-3 left-4 bg-primary text-primary-content text-xs font-bold px-3 py-1 rounded-full">Default</span>
+
+                    <h4 class="font-bold text-base-content text-lg mb-1">Ayush Verma</h4>
+                    <p class="text-sm text-base-content/70 leading-relaxed mb-4">
+                        123 College Campus Road<br>
+                        Hostel Block A, Room 402<br>
+                        New Delhi, DL 110016<br>
+                        India
+                    </p>
+
+                    <div class="flex items-center gap-2 text-sm text-base-content/80 mb-6 font-medium">
+                        <i data-lucide="phone" class="w-4 h-4"></i> +91 98765 43210
+                    </div>
+
+                    <div class="flex gap-4">
+                        <button class="text-primary font-medium hover:underline text-sm">Edit</button>
+                        <button class="text-error font-medium hover:underline text-sm">Remove</button>
+                    </div>
+                </div>
+
+                <!-- Secondary Address Card -->
+                <div class="border border-base-300 rounded-2xl p-6 relative">
+
+                    <h4 class="font-bold text-base-content text-lg mb-1">Sharma Verma</h4>
+                    <p class="text-sm text-base-content/70 leading-relaxed mb-4">
+                        45 Home Town Avenue<br>
+                        Sector 4, Phase 2<br>
+                        Noida, UP 201301<br>
+                        India
+                    </p>
+
+                    <div class="flex items-center gap-2 text-sm text-base-content/80 mb-6 font-medium">
+                        <i data-lucide="phone" class="w-4 h-4"></i> +91 91234 56780
+                    </div>
+
+                    <div class="flex gap-4">
+                        <button class="text-primary font-medium hover:underline text-sm">Edit</button>
+                        <button class="text-error font-medium hover:underline text-sm">Remove</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- Tab Switching Logic for Settings Page -->
+<script>
+    function switchTab(tabId) {
+        if (event) event.preventDefault();
+
+        // Hide all panels
+        document.querySelectorAll('.settings-panel').forEach(panel => {
+            panel.classList.add('hidden');
+        });
+
+        // Show target panel
+        document.getElementById('panel-' + tabId).classList.remove('hidden');
+
+        // Reset all tabs to inactive styling
+        document.querySelectorAll('.settings-tab').forEach(tab => {
+            // Remove active classes
+            tab.classList.remove('bg-base-200');
+            tab.classList.add('hover:bg-base-200/50');
+
+            // Revert icon container
+            const iconContainer = tab.querySelector('.icon-container');
+            iconContainer.classList.remove('bg-primary', 'text-primary-content');
+            iconContainer.classList.add('bg-base-100', 'border', 'border-base-300', 'text-base-content');
+
+            // Revert text
+            const tabText = tab.querySelector('.tab-text');
+            tabText.classList.remove('font-bold');
+            tabText.classList.add('font-medium', 'text-base-content/80', 'group-hover:text-base-content');
+        });
+
+        // Apply active styling to clicked tab
+        const activeTab = document.getElementById('tab-' + tabId);
+        activeTab.classList.add('bg-base-200');
+        activeTab.classList.remove('hover:bg-base-200/50');
+
+        const activeIconContainer = activeTab.querySelector('.icon-container');
+        activeIconContainer.classList.add('bg-primary', 'text-primary-content');
+        activeIconContainer.classList.remove('bg-base-100', 'border', 'border-base-300', 'text-base-content');
+
+        const activeTabText = activeTab.querySelector('.tab-text');
+        activeTabText.classList.add('font-bold');
+        activeTabText.classList.remove('font-medium', 'text-base-content/80', 'group-hover:text-base-content');
+    }
+</script>
+{% endblock %}

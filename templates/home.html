@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<!-- As per "Main Page.png" the main area is currently empty white space, 
+     acting as a canvas for the app features -->
+<div class="w-full h-full flex flex-col items-center justify-center text-center p-8 bg-base-100 rounded-[20px]">
+    <h1 class="text-4xl font-bold mb-4">AI Upcycle Assistant</h1>
+    <p class="text-lg text-base-content/70 max-w-lg">
+        Our UI has been updated to match the clean design prototypes!
+        Upload your clothing images here to get started with sustainable fashion ideas.
+    </p>
+
+    <button class="btn btn-primary mt-8 gap-2 rounded-full px-8">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" />
+        </svg>
+        Upload Image
+    </button>
+</div>
+{% endblock %}
